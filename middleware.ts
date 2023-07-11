@@ -21,7 +21,7 @@ export let defaultLocale = 'en';
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-  const userPreferredLocale = getLocale(request);
+  // const userPreferredLocale = getLocale(request);
 
   // Check if the default locale is in the pathname
   if (
@@ -52,7 +52,7 @@ export function middleware(request: NextRequest) {
     // e.g. incoming request is /products
     // Tell Next.js it should pretend it's /en/products
     return NextResponse.rewrite(
-      new URL(`/${userPreferredLocale}${pathname}`, request.url)
+      new URL(`/${defaultLocale}${pathname}`, request.url)
     );
   }
 }
