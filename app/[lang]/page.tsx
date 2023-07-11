@@ -1,9 +1,16 @@
 import Link from 'next/link';
 
+import { Locale } from '@/types/global';
 import { siteConfig } from '@/config/site';
 import { buttonVariants } from '@/components/ui/button';
 
-export default function IndexPage({ params: { lang } }) {
+interface IndexPageProps {
+  params: {
+    lang: Locale;
+  };
+}
+
+export default function IndexPage({ params: { lang } }: IndexPageProps) {
   console.log('Language', lang);
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
