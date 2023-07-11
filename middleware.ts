@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { Locale } from './types/global';
+
 // import { match } from '@formatjs/intl-localematcher';
 // import Negotiator from 'negotiator';
 
-let locales = ['en', 'ar', 'ur'];
-export let defaultLocale = 'en';
+let locales: Locale[] = ['en', 'ar'];
+export let defaultLocale: Locale = 'en';
 
 // function getLocale(request: Request): string {
 //   const headers = new Headers(request.headers);
