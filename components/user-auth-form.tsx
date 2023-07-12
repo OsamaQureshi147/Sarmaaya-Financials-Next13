@@ -1,40 +1,55 @@
 'use client';
 
-import React, { FC } from 'react';
-import { getDictionary } from '@/dictionaries';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-import { Icons } from './icons';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { emailFormSchema } from '@/lib/validations/auth/userEmailSchema';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
-type UserAuthFormProps = { dict: Awaited<ReturnType<typeof getDictionary>> };
+type EmailFormType = z.infer<typeof emailFormSchema>;
 
-const UserAuthForm: FC<UserAuthFormProps> = ({ dict }) => {
+export function UserAuthForm() {
+  const form = useForm<EmailFormType>({
+    resolver: zodResolver(emailFormSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
+
+  const onSubmit = (values: EmailFormType) => {
+    console.log('OnSubmit', values);
+  };
+
   return (
-    <>
-      <Button className="capitalize" variant="outlineShadow">
-        <Icons.google />
-        <p>continue with google</p>
-      </Button>
-      <div className="flex items-center justify-center">
-        <div className="grow border-t border-zinc-300"></div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 font-semibold text-gray-500">
-          OR
-        </div>
-        <div className="grow border-t border-zinc-300"></div>
-      </div>
-      <div>
-        <Label htmlFor="email" className="capitalize">
-          your email address
-        </Label>
-        <Input id="email" placeholder="example@abc.com" />
-      </div>
-      <Button type="submit" className="capitalize">
-        <p>{dict.onBoarding.continue}</p>
-      </Button>
-    </>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Your Email Address</FormLabel>
+              <FormControl>
+                <Input placeholder="example@abc.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full capitalize">
+          continue
+        </Button>
+      </form>
+    </Form>
   );
-};
-
-export default UserAuthForm;
+}
