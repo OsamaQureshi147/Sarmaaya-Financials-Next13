@@ -81,4 +81,7 @@
   input {
     @apply mt-1;
   }
+  h1 {
+    @apply text-3xl font-bold;
+  }
 }

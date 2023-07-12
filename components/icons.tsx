@@ -1,6 +1,7 @@
 import Image, { ImageProps } from 'next/image';
 import IconImage from '@/public/sarmaaya-logo.png';
 import {
+  ChevronLeft,
   LucideProps,
   Moon,
   SunMedium,
@@ -11,6 +12,7 @@ import {
 export type Icon = LucideIcon;
 
 export const Icons = {
+  left: ChevronLeft,
   sun: SunMedium,
   moon: Moon,
   twitter: Twitter,

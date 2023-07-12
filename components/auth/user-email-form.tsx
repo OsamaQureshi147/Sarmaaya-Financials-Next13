@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -18,7 +19,8 @@ import { Input } from '@/components/ui/input';
 
 type EmailFormType = z.infer<typeof emailFormSchema>;
 
-export function UserAuthForm() {
+export function UserEmailForm() {
+  const router = useRouter();
   const form = useForm<EmailFormType>({
     resolver: zodResolver(emailFormSchema),
     defaultValues: {
@@ -26,8 +28,9 @@ export function UserAuthForm() {
     },
   });
 
-  const onSubmit = (values: EmailFormType) => {
-    console.log('OnSubmit', values);
+  const onSubmit = ({ email }: EmailFormType) => {
+    console.log('OnSubmit', email);
+    router.push('/login/password');
   };
 
   return (
@@ -40,7 +43,7 @@ export function UserAuthForm() {
             <FormItem>
               <FormLabel>Your Email Address</FormLabel>
               <FormControl>
-                <Input placeholder="example@abc.com" {...field} />
+                <Input placeholder="example@abc.com" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
