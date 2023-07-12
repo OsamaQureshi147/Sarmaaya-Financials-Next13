@@ -1,8 +1,12 @@
 {
   "onBoarding": {
+    "welcomeText": "welcome to sarmaaya",
     "yourEmailAddress": "your email address",
     "termsAndConditions": "terms and conditions",
     "privacyPolicy": "privacy policy",
-    "continue": "continue"
+    "continue": "continue",
+    "byProceeding": "by proceeding",
+    "iAccept": "i accept",
+    "and": "and"
   }
 }

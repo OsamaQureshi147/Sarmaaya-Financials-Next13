@@ -1,8 +1,12 @@
 {
   "onBoarding": {
-    "yourEmailAddress": "arabic your email address",
-    "termsAndConditions": "arabic terms and conditions",
-    "privacyPolicy": "arabicprivacy policy",
-    "continue": "arabic continue"
+    "welcomeText": "welcome to sarmaaya",
+    "yourEmailAddress": "your email address",
+    "termsAndConditions": "terms and conditions",
+    "privacyPolicy": "privacy policy",
+    "continue": "continue",
+    "byProceeding": "by proceeding",
+    "iAccept": "i accept",
+    "and": "and"
   }
 }
