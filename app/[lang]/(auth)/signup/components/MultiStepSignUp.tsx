@@ -2,9 +2,13 @@
 
 import React, { useCallback, useState } from 'react';
 
-import { VerifyEmailFormSchemaType } from '@/lib/validations/auth/schemas';
+import {
+  SetPasswordSchemaType,
+  VerifyEmailFormSchemaType,
+} from '@/lib/validations/auth/schemas';
 
 import { OnBoardingEmailCard } from '../../components/OnBoardingEmailCard';
+import { PasswordSetterCard } from './PasswordSetterCard';
 import { VerifyEmailCard } from './VerifyEmailCard';
 
 export const MultiStepSignUp = () => {
@@ -46,6 +50,11 @@ export const MultiStepSignUp = () => {
     console.log('Verification Code:', verificationCode);
   };
 
+  const onSubmitPassword = ({ password }: SetPasswordSchemaType) => {
+    console.log('Password', password);
+    // set password for the user and move to the next step
+  };
+
   const renderCurrentStep = () => {
     switch (currentStep) {
       case 1:
@@ -57,6 +66,8 @@ export const MultiStepSignUp = () => {
             email={userCredentials.email}
           />
         );
+      case 3:
+        return <PasswordSetterCard onSubmit={onSubmitPassword} />;
       default:
         return <OnBoardingEmailCard onSubmit={onSubmitEmail} />;
     }
