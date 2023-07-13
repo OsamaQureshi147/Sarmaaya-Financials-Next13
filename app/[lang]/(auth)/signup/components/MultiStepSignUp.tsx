@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { LoginFormType } from '@/components/auth/user-login-form';
 
 import { OnBoardingEmailCard } from '../../components/OnBoardingEmailCard';
-import { LoginCard } from './LoginCard';
+import { VerifyEmailCard } from './VerifyEmailCard';
 
-export const MultiStepLogin = () => {
+export const MultiStepSignUp = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [userCredentials, setUserCredentials] = useState({
@@ -19,29 +19,25 @@ export const MultiStepLogin = () => {
     () => setCurrentStep((prev) => ++prev),
     [setCurrentStep]
   );
-  const prevStep = useCallback(
-    () => setCurrentStep((prev) => --prev),
-    [setCurrentStep]
-  );
 
   const onSubmitEmail = useCallback(
     ({ email }: { email: string }) => {
       // check if email exists in our database
       // if it exists
-      const emailExists = true;
-      // go to the next step if it exists
+      const emailExists = false;
       if (emailExists) {
-        nextStep();
-      } else {
-        // navigate to verify email screen
+        // navigate to login screen
         return;
+      } else {
+        // go to the next signup step if it does not exists
+        nextStep();
       }
       setUserCredentials((prev) => ({ ...prev, email }));
     },
     [nextStep]
   );
 
-  const handleLogin = ({ email, password }: LoginFormType) => {
+  const handleVerificationCodeSubmit = ({ email, password }: LoginFormType) => {
     // get user data and store in session
     router.replace('/');
   };
@@ -52,9 +48,8 @@ export const MultiStepLogin = () => {
         return <OnBoardingEmailCard onSubmit={onSubmitEmail} />;
       case 2:
         return (
-          <LoginCard
-            onSubmit={handleLogin}
-            prevStep={prevStep}
+          <VerifyEmailCard
+            onSubmit={handleVerificationCodeSubmit}
             email={userCredentials.email}
           />
         );
