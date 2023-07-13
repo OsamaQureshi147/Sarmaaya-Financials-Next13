@@ -1,11 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { FC } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { emailFormSchema } from '@/lib/validations/auth/userEmailSchema';
+import { emailFormSchema } from '@/lib/validations/auth/schemas';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -18,20 +18,17 @@ import {
 import { Input } from '@/components/ui/input';
 
 type EmailFormType = z.infer<typeof emailFormSchema>;
+export interface UserEmailFormProps {
+  onSubmit: ({ email }: EmailFormType) => void;
+}
 
-export function UserEmailForm() {
-  const router = useRouter();
+export const UserEmailForm: FC<UserEmailFormProps> = ({ onSubmit }) => {
   const form = useForm<EmailFormType>({
     resolver: zodResolver(emailFormSchema),
     defaultValues: {
       email: '',
     },
   });
-
-  const onSubmit = ({ email }: EmailFormType) => {
-    console.log('OnSubmit', email);
-    router.push('/login/password');
-  };
 
   return (
     <Form {...form}>
@@ -55,4 +52,4 @@ export function UserEmailForm() {
       </form>
     </Form>
   );
-}
+};

@@ -3,6 +3,8 @@ import { getDictionary } from '@/dictionaries';
 import { Locale } from '@/types/global';
 import { UserEmailForm } from '@/components/auth/user-email-form';
 
+import MultiStepLogin from './components/MultiStepLogin';
+
 interface LoginEmailPageProps {
   params: {
     lang: Locale;
@@ -15,12 +17,7 @@ export default async function LoginEmailPage({
   const dict = await getDictionary(lang);
   return (
     <>
-      <h1 className="capitalize">{dict.onBoarding.welcomeText}</h1>
-      <UserEmailForm />
-      <p>
-        By proceeding, I accept Sarmaaya <strong>Terms and Conditions</strong>{' '}
-        and <strong>Privacy Policy</strong>
-      </p>
+      <MultiStepLogin />
     </>
   );
 }
