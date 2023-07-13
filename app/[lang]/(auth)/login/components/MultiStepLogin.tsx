@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { LoginFormType } from '@/components/auth/user-login-form';
+import { LoginFormSchemaType } from '@/lib/validations/auth/schemas';
 
 import { OnBoardingEmailCard } from '../../components/OnBoardingEmailCard';
 import { LoginCard } from './LoginCard';
@@ -41,9 +41,10 @@ export const MultiStepLogin = () => {
     [nextStep]
   );
 
-  const handleLogin = ({ email, password }: LoginFormType) => {
-    // get user data and store in session
+  const handleLogin = ({ email, password }: LoginFormSchemaType) => {
+    // verify email and password and navigate to home
     router.replace('/');
+    // else show error
   };
 
   const renderCurrentStep = () => {

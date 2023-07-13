@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 
 import {
-  UserLoginForm,
-  UserLoginFormProps,
-} from '@/components/auth/user-login-form';
+  EmailVerificationForm,
+  EmailVerificationFormProps,
+} from '@/components/auth/user-email-verify-form';
 
-interface VerifyEmailCardProps extends UserLoginFormProps {
+interface VerifyEmailCardProps extends EmailVerificationFormProps {
   email?: string;
 }
 
@@ -39,7 +39,7 @@ export const VerifyEmailCard: FC<VerifyEmailCardProps> = ({
     <>
       <h1>Verify your Email</h1>
       <p>{`A code is sent to your email ${email} for verification.`}</p>
-      <UserLoginForm onSubmit={onSubmit} email={email} />
+      <EmailVerificationForm onSubmit={onSubmit} />
       <div>
         {!canResendVerificationCode && (
           <p className="text-sm">{`Resend code in: ${secondsLeft} seconds`}</p>

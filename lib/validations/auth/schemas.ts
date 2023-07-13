@@ -9,3 +9,11 @@ export const loginFormSchema = emailFormSchema.extend({
     message: 'Password must contain atleast 4 character(s)',
   }),
 });
+
+export const verifyEmailFormSchema = z.object({
+  verificationCode: z.string(),
+});
+
+export type EmailFormSchemaType = z.infer<typeof emailFormSchema>;
+export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
+export type VerifyEmailFormSchemaType = z.infer<typeof verifyEmailFormSchema>;

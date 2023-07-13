@@ -5,8 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import {
-  EmailFormSchemaType,
-  emailFormSchema,
+  VerifyEmailFormSchemaType,
+  verifyEmailFormSchema,
 } from '@/lib/validations/auth/schemas';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,15 +19,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-export interface UserEmailFormProps {
-  onSubmit: ({ email }: EmailFormSchemaType) => void;
+export interface EmailVerificationFormProps {
+  onSubmit: ({ verificationCode }: VerifyEmailFormSchemaType) => void;
 }
 
-export const UserEmailForm: FC<UserEmailFormProps> = ({ onSubmit }) => {
-  const form = useForm<EmailFormSchemaType>({
-    resolver: zodResolver(emailFormSchema),
+export const EmailVerificationForm: FC<EmailVerificationFormProps> = ({
+  onSubmit,
+}) => {
+  const form = useForm<VerifyEmailFormSchemaType>({
+    resolver: zodResolver(verifyEmailFormSchema),
     defaultValues: {
-      email: '',
+      verificationCode: '',
     },
   });
 
@@ -36,19 +38,19 @@ export const UserEmailForm: FC<UserEmailFormProps> = ({ onSubmit }) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="email"
+          name="verificationCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Email Address</FormLabel>
+              <FormLabel>Enter Code</FormLabel>
               <FormControl>
-                <Input placeholder="example@abc.com" type="email" {...field} />
+                <Input placeholder="enter code" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full capitalize">
-          continue
+          verify
         </Button>
       </form>
     </Form>

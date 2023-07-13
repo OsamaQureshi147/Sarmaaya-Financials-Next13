@@ -1,15 +1,13 @@
 'use client';
 
 import React, { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
-import { LoginFormType } from '@/components/auth/user-login-form';
+import { VerifyEmailFormSchemaType } from '@/lib/validations/auth/schemas';
 
 import { OnBoardingEmailCard } from '../../components/OnBoardingEmailCard';
 import { VerifyEmailCard } from './VerifyEmailCard';
 
 export const MultiStepSignUp = () => {
-  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [userCredentials, setUserCredentials] = useState({
     email: '',
@@ -37,9 +35,15 @@ export const MultiStepSignUp = () => {
     [nextStep]
   );
 
-  const handleVerificationCodeSubmit = ({ email, password }: LoginFormType) => {
-    // get user data and store in session
-    router.replace('/');
+  const handleVerificationCodeSubmit = ({
+    verificationCode,
+  }: VerifyEmailFormSchemaType) => {
+    // check if the entered code is correct
+
+    // if correct, proceed to next step
+    nextStep();
+
+    console.log('Verification Code:', verificationCode);
   };
 
   const renderCurrentStep = () => {

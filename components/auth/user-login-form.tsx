@@ -1,12 +1,14 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
-import { loginFormSchema } from '@/lib/validations/auth/schemas';
+import {
+  LoginFormSchemaType,
+  loginFormSchema,
+} from '@/lib/validations/auth/schemas';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -18,14 +20,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-export type LoginFormType = z.infer<typeof loginFormSchema>;
 export interface UserLoginFormProps {
-  onSubmit: ({ email, password }: LoginFormType) => void;
+  onSubmit: ({ email, password }: LoginFormSchemaType) => void;
   email?: string;
 }
 
 export const UserLoginForm: FC<UserLoginFormProps> = ({ onSubmit, email }) => {
-  const form = useForm<LoginFormType>({
+  const form = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: email || '',
