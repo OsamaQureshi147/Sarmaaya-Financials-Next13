@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
 import {
-  PasswodSetterFormProps,
   PasswordSetterForm,
+  PasswordSetterFormProps,
 } from '@/components/auth/user-set-password-form';
 
-export const PasswordSetterCard: FC<PasswodSetterFormProps> = ({
+export const PasswordSetterCard: FC<PasswordSetterFormProps> = ({
   onSubmit,
 }) => {
   return (

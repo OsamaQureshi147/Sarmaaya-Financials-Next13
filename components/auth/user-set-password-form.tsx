@@ -19,11 +19,11 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-export interface PasswodSetterFormProps {
+export interface PasswordSetterFormProps {
   onSubmit: ({ password }: SetPasswordSchemaType) => void;
 }
 
-export const PasswordSetterForm: FC<PasswodSetterFormProps> = ({
+export const PasswordSetterForm: FC<PasswordSetterFormProps> = ({
   onSubmit,
 }) => {
   const form = useForm<SetPasswordSchemaType>({
