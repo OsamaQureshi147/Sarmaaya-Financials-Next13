@@ -17,7 +17,7 @@ export const Icons = {
   moon: Moon,
   twitter: Twitter,
   logo: (props: Partial<ImageProps>) => (
-    <Image width={100} height={50} src={IconImage} alt="logo" {...props} />
+    <Image width={100} src={IconImage} alt="logo" {...props} />
   ),
   google: (props: LucideProps) => (
     <svg
