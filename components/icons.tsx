@@ -1,5 +1,5 @@
 import Image, { ImageProps } from 'next/image';
-import IconImage from '@/public/sarmaaya-logo.png';
+import IconImage from '@/public/images/sarmaaya-logo.png';
 import {
   ChevronLeft,
   LucideProps,
